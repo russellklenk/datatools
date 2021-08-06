@@ -933,7 +933,7 @@ def load_header_v1(src: Union[ByteString, io.BufferedIOBase]) -> Tuple[Optional[
         return (None, None)
 
     magic: bytes = header[0:4]
-    version: int = header[4:5]
+    version: int = int.from_bytes(header[4:5], byteorder='little', signed=False)
     if magic != MAGIC_BYTES or version < 1:
         stream.seek(base, os.SEEK_SET)
         return (None, None)
