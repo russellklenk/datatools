@@ -63,8 +63,8 @@ def main() -> None:
         args.output       = os.path.abspath(args.output)
         dirname, filename = os.path.split(args.output)
         file   , ext      = filename.split(os.extsep, 1)
-        affine_path       = os.path.join(dirname, file + '.affine' + ext)
-        volume_path       = os.path.join(dirname, file + '.volume' + ext)
+        affine_path       = os.path.join(dirname, file + '.affine.' + ext)
+        volume_path       = os.path.join(dirname, file + '.volume.' + ext)
 
     # Extract the shape ordering.
     if args.order is not None:
