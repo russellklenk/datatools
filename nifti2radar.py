@@ -56,13 +56,13 @@ def main() -> None:
     # Generate the paths to the output files.
     if not args.output:
         dirname, filename = os.path.split(args.input)
-        file   , _ext     = os.path.splitext(filename)
+        file   , _ext     = filename.split(os.extsep, 1)
         affine_path       = os.path.join(dirname, file + AFFINE_EXT)
         volume_path       = os.path.join(dirname, file + VOLUME_EXT)
     else:
         args.output       = os.path.abspath(args.output)
         dirname, filename = os.path.split(args.output)
-        file   , ext      = os.path.splitext(filename)
+        file   , ext      = filename.split(os.extsep, 1)
         affine_path       = os.path.join(dirname, file + '.affine' + ext)
         volume_path       = os.path.join(dirname, file + '.volume' + ext)
 
@@ -115,7 +115,7 @@ def main() -> None:
     volume_v1, volume_header = radar.make_header_v1(data_format, interpret, storage, shape_order, array_shape=volumes.shape[0:3], array_count=n)
 
     # Ensure the output directory tree exists.
-    output_dir = os.path.basename(affine_path)
+    output_dir, _ = os.path.split(affine_path)
     if not os.path.isdir(output_dir):
         os.makedirs(output_dir)
 
