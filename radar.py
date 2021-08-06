@@ -890,7 +890,7 @@ def make_header_v1(format: Union[int, DataFormat], interpret: Union[int, DataInt
     offset += 8 # offset -> 22
     struct.pack_into("<H"  , header, offset, header_v1.array_count)
     offset += 2 # offset -> 24
-    for index in range(element_count):
+    for index in range(len(array_shape)):
         struct.pack_into("<H", header, offset, array_shape[index])
         offset += 2 # offset -> 26/28/30
 
