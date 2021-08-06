@@ -128,7 +128,7 @@ def main() -> None:
     with open(volume_path, mode='wb') as volume_fp:
         volume_offset  = volume_fp.write(volume_header)
         for volume_index in range(n):
-            volume_data: np.ndarray = volumes[:,:,:,n]
+            volume_data: np.ndarray = volumes[:,:,:,volume_index]
             volume_offset += radar.append_array(volume_fp, volume_data, volume_v1)
         
     print(f'Wrote {os.stat(affine_path).st_size} byte(s) to file {affine_path}.')
